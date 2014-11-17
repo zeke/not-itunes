@@ -3,6 +3,7 @@
     <script src="bower_components/fetch/fetch.js"></script>
     <script src="bower_components/lunr.js/lunr.min.js"></script>
     <script>
+      window.tracks = {}
 
       window.lunrIndex = lunr(function () {
         this.ref("Track ID")
@@ -11,32 +12,9 @@
         this.field("Album Artist", {boost: 2})
         this.field("Album", {boost: 1})
         this.field("Genre", {boost: 1})
-        // this.field("Kind")
-        // this.field("Size")
-        // this.field("Total Time")
-        // this.field("Track Number")
-        // this.field("Year")
-        // this.field("Date Modified")
-        // this.field("Date Added")
-        // this.field("Bit Rate")
-        // this.field("Sample Rate")
-        // this.field("Comments")
-        // this.field("Play Count")
-        // this.field("Play Date")
-        // this.field("Play Date UTC")
-        // this.field("Persistent ID")
-        // this.field("Track Type")
-        // this.field("Location")
-        // this.field("File Folder Count")
-        // this.field("Library Folder Count")
-        // this.field("Grouping")
-        // this.field("Track Count")
-        // this.field("Skip Count")
-        // this.field("Skip Date")
-        // this.field("Rating")
-        // this.field("Extension")
+        this.field("Year")
+        this.field("Comments")
       })
-      window.tracks = {}
 
       window.search = function (term) {
         var refs = lunrIndex.search(term)
