@@ -1,0 +1,35 @@
+{
+  "name": "not-itunes",
+  "version": "1.0.0",
+  "description": "Creating an npm package from within the remains of an iTunes library",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zeke/not-itunes"
+  },
+  "keywords": [
+    "not-itunes",
+    "itunes",
+    "music",
+    "mp3",
+    "id3",
+    "id3v2",
+    "audio",
+    "metadata"
+  ],
+  "author": "Zeke Sikelianos <zeke@sikelianos.com> (http://zeke.sikelianos.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zeke/not-itunes/issues"
+  },
+  "homepage": "https://github.com/zeke/not-itunes",
+  "dependencies": {
+    "itunes-library-stream": "0.0.0",
+    "lodash": "^2.4.1",
+    "userhome": "^1.0.0"
+  }
+}

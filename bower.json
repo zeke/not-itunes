@@ -1,0 +1,9 @@
+{
+  "name": "not-itunes",
+  "version": "1.0.0",
+  "dependencies": {
+    "lunr.js": "~0.5.6",
+    "fetch": "~0.3.0"
+  },
+  "private": true
+}

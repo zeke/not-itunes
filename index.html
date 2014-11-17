@@ -1,0 +1,71 @@
+<html>
+  <head>
+    <script src="bower_components/fetch/fetch.js"></script>
+    <script src="bower_components/lunr.js/lunr.min.js"></script>
+    <script>
+
+      window.lunrIndex = lunr(function () {
+        this.ref("Track ID")
+        this.field("Name", {boost: 3})
+        this.field("Artist", {boost: 2})
+        this.field("Album Artist", {boost: 2})
+        this.field("Album", {boost: 1})
+        this.field("Genre", {boost: 1})
+        // this.field("Kind")
+        // this.field("Size")
+        // this.field("Total Time")
+        // this.field("Track Number")
+        // this.field("Year")
+        // this.field("Date Modified")
+        // this.field("Date Added")
+        // this.field("Bit Rate")
+        // this.field("Sample Rate")
+        // this.field("Comments")
+        // this.field("Play Count")
+        // this.field("Play Date")
+        // this.field("Play Date UTC")
+        // this.field("Persistent ID")
+        // this.field("Track Type")
+        // this.field("Location")
+        // this.field("File Folder Count")
+        // this.field("Library Folder Count")
+        // this.field("Grouping")
+        // this.field("Track Count")
+        // this.field("Skip Count")
+        // this.field("Skip Date")
+        // this.field("Rating")
+        // this.field("Extension")
+      })
+      window.tracks = {}
+
+      window.search = function (term) {
+        var refs = lunrIndex.search(term)
+        var results = refs.map(function(ref) { return tracks[Number(ref.ref)] })
+
+        results.forEach(function(result) {
+          console.log("%s %s %s", result.Artist, result.Name, result.Album)
+        })
+
+        return results
+      }
+
+      fetch("/tracks.json")
+        .then(function(response) {
+          return response.json()
+        }).then(function(json) {
+          console.log("loaded tracks")
+
+          json.forEach(function(track) {
+            tracks[track["Track ID"]] = track
+            lunrIndex.add(track)
+          })
+          console.log("indexed %d tracks", Object.keys(tracks).length)
+        }).catch(function(ex) {
+          console.log('unable to parse track data', ex)
+        })
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>
